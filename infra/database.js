@@ -9,13 +9,17 @@ async function query(queryObject) {
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
   });
-  const client = await pool.connect();
-
+    const client = await pool.connect();
   try {
+    
     const result = await client.query(queryObject);
     client.end();
     return result;
-  } finally {
+  }
+  catch(error){
+    console.log(error);
+  }
+   finally {
     client.release(true);
   }
 }

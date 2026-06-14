@@ -9,12 +9,12 @@ test("GET to /api/v1/status should return 200", async () => {
     new Date(responseBody.update_at).toISOString(),
   );
 
-  expect(responseBody.server_version).toBeDefined();
-  expect(responseBody.server_version).toBe("16.0");
+  expect(responseBody.dependencies.database.server_version).toBeDefined();
+  expect(responseBody.dependencies.database.server_version).toBe("16.0");
 
-  expect(responseBody.max_connections).toBeDefined();
-  expect(responseBody.max_connections).toBe("100");
+  expect(responseBody.dependencies.database.max_connections).toBeDefined();
+  expect(responseBody.dependencies.database.max_connections).toBe("100");
 
-  expect(responseBody.stat_activity).toBeDefined();
-  expect(responseBody.stat_activity).toEqual(1);
+  expect(responseBody.dependencies.database.stat_activity).toBeDefined();
+  expect(responseBody.dependencies.database.stat_activity).toEqual(1);
 });
