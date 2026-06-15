@@ -1,26 +1,24 @@
-import pg from "pg";
-const { Pool } = pg;
+import { Client } from "pg";
 
 async function query(queryObject) {
-  const pool = new Pool({
+  const client = new Client({
     host: process.env.POSTGRES_HOST,
     port: process.env.POSTGRES_PORT,
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
+    ssl: process.env.NODE_ENV === "development" ? false : true,
   });
-    const client = await pool.connect();
+
   try {
-    
+    await client.connect();
     const result = await client.query(queryObject);
     client.end();
     return result;
-  }
-  catch(error){
-    console.log(error);
-  }
-   finally {
-    client.release(true);
+  } catch (error) {
+    throw error;
+  } finally {
+    client.end();
   }
 }
 export default {
