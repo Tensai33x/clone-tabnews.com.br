@@ -8,7 +8,6 @@ async function query(queryObject) {
     database: process.env.PGDATABASE,
     password: process.env.PGPASSWORD,
     ssl: process.env.NODE_ENV === "development" ? false : true,
-    
   });
 
   try {
