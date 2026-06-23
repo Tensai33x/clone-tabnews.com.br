@@ -7,7 +7,7 @@ async function query(queryObject) {
     user: process.env.PGUSER,
     database: process.env.PGDATABASE,
     password: process.env.PGPASSWORD,
-    ssl: process.env.NODE_ENV === "development" ? false : true,
+    ssl: process.env.NODE_ENV === "development" || "test" ? false : true,
   });
 
   try {

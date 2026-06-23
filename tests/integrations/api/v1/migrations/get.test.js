@@ -1,3 +1,6 @@
+import database from "infra/database.js";
+require("dotenv").config();
+
 test("GET to /api/v1/migrations should return 200", async () => {
   const response = await fetch("http://localhost:3000/api/v1/migrations", {
     method: "GET",
@@ -8,5 +11,7 @@ test("GET to /api/v1/migrations should return 200", async () => {
   const responseBody = await response.json();
 
   expect(Array.isArray(responseBody)).toBe(true);
-  console.log(responseBody);
+  console.log(process.env.NODE_ENV);
+  const res = await database.query('SELECT 1+1;');
+  
 });

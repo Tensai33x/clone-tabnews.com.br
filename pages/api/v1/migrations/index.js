@@ -1,6 +1,7 @@
 import { join } from "node:path";
 import migrationRunner from "node-pg-migrate";
 export default async function status(request, response) {
+  console.log(process.env.NODE_ENV);
   if (request.method === "POST") {
     const migrations = await migrationRunner({
       dryRun: false,
