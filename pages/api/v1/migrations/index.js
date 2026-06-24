@@ -3,7 +3,7 @@ import migrationRunner from "node-pg-migrate";
 export default async function status(request, response) {
   if (request.method === "POST") {
     const migrations = await migrationRunner({
-      dryRun: false,
+      dryRun: true,
       dir: join("infra", "migrations"),
       verbose: true,
       direction: "up",
